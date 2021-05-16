@@ -6,7 +6,7 @@ import PostsTab from './src/screens/home/tabs/PostsTab';
 import PhotosTab from './src/screens/home/tabs/PhotosTab';
 import UsersTab from './src/screens/home/tabs/UsersTab';
 import {loginStack, homeStack} from './src/navigation/navigationStacks';
-import {isAuthorizad} from './src/helpers/authHelpers';
+import {getUserFromStorage} from './src/helpers/authHelpers';
 
 Navigation.registerComponent('Login', () => LoginScreen);
 Navigation.registerComponent('Profile', () => ProfileScreen);
@@ -15,8 +15,8 @@ Navigation.registerComponent('Photos', () => PhotosTab);
 Navigation.registerComponent('Users', () => UsersTab);
 
 Navigation.events().registerAppLaunchedListener(async () => {
-  const isAuth = await isAuthorizad();
-  const rootStack = isAuth ? homeStack : loginStack;
+  const authUser = await getUserFromStorage();
+  const rootStack = authUser ? homeStack : loginStack;
   Navigation.setRoot({
     root: rootStack,
   });
