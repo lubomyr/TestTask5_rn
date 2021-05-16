@@ -1,7 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import {View, FlatList} from 'react-native';
-import {getTopBarWithProfileOptions} from '../../../navigation/helper';
-import {useNavigationButtonPressed} from '../../../hooks/navigationHooks';
+import {
+  getTopBarWithProfileOptions,
+  PROFILE_BUTTON_ID,
+} from '../../../navigation/helper';
+import {useNavigationButtonPress} from 'react-native-navigation-hooks';
 import {Navigation} from 'react-native-navigation';
 import {
   postDetailsStack,
@@ -14,8 +17,8 @@ import {globalStyles} from '../../../styles/globalStyles';
 const PostsTab = props => {
   const [posts, setPosts] = useState([]);
 
-  useNavigationButtonPressed(e => {
-    if (e.buttonId === 'PROFILE_BUTTON_ID') {
+  useNavigationButtonPress(e => {
+    if (e.buttonId === PROFILE_BUTTON_ID) {
       Navigation.push(props.componentId, profileStack);
     }
   }, props.componentId);

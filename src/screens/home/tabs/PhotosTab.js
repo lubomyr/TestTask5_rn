@@ -1,8 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import {ScrollView, View, StyleSheet} from 'react-native';
 import {Navigation} from 'react-native-navigation';
-import {getTopBarWithProfileOptions} from '../../../navigation/helper';
-import {useNavigationButtonPressed} from '../../../hooks/navigationHooks';
+import {
+  getTopBarWithProfileOptions,
+  PROFILE_BUTTON_ID,
+} from '../../../navigation/helper';
+import {useNavigationButtonPress} from 'react-native-navigation-hooks';
 import {
   profileStack,
   photoDetailsStack,
@@ -19,8 +22,8 @@ const PhotosTab = props => {
   const imageWidth = layout?.width / imagesPerRow;
   const imageHeight = imageWidth;
 
-  useNavigationButtonPressed(e => {
-    if (e.buttonId === 'PROFILE_BUTTON_ID') {
+  useNavigationButtonPress(e => {
+    if (e.buttonId === PROFILE_BUTTON_ID) {
       Navigation.push(props.componentId, profileStack);
     }
   }, props.componentId);
