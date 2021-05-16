@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, FlatList} from 'react-native';
+import {View, FlatList, BackHandler} from 'react-native';
 import {
   getTopBarWithProfileOptions,
   PROFILE_BUTTON_ID,
@@ -13,6 +13,7 @@ import {
 import {getPosts} from '../../../api/api';
 import PostItem from './components/PostItem';
 import {globalStyles} from '../../../styles/globalStyles';
+import {onBackPress} from '../../../helpers/onBackPressHelper';
 
 const PostsTab = props => {
   const [posts, setPosts] = useState([]);
@@ -33,6 +34,11 @@ const PostsTab = props => {
       setPosts(await getPosts());
     };
     retrievePosts();
+    BackHandler.addEventListener('hardwareBackPress', () => onBackPress(props));
+    return () =>
+      BackHandler.removeEventListener('hardwareBackPress', () =>
+        onBackPress(props),
+      );
   }, []);
 
   return (

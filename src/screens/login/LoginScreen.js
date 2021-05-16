@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {View} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View, BackHandler} from 'react-native';
 import {Navigation} from 'react-native-navigation';
 import {globalStyles, theme} from '../../styles/globalStyles';
 import {FieldWrapper, TextInput, Button} from '../../components';
@@ -8,6 +8,7 @@ import {withModal} from '../../hoc/withModal';
 import {getUsers} from '../../api/api';
 import {homeStack} from '../../navigation/navigationStacks';
 import {saveUserToStorage} from '../../helpers/authHelpers';
+import {onBackPress} from '../../helpers/onBackPressHelper';
 
 const LoginScreen = props => {
   const {showModal} = props;
@@ -30,6 +31,14 @@ const LoginScreen = props => {
       showModal({title: 'User with this email not found'});
     }
   };
+
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', () => onBackPress(props));
+    return () =>
+      BackHandler.removeEventListener('hardwareBackPress', () =>
+        onBackPress(props),
+      );
+  }, []);
 
   return (
     <View style={globalStyles.root}>
