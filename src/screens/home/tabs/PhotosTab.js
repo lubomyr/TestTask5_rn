@@ -6,10 +6,7 @@ import {
   PROFILE_BUTTON_ID,
 } from '../../../navigation/helper';
 import {useNavigationButtonPress} from 'react-native-navigation-hooks';
-import {
-  profileStack,
-  photoDetailsStack,
-} from '../../../navigation/navigationStacks';
+import {screenComponents} from '../../../navigation/screenComponents';
 import {getPhotos} from '../../../api/api';
 import {globalStyles} from '../../../styles/globalStyles';
 import PhotoItem from './components/PhotoItem';
@@ -24,15 +21,15 @@ const PhotosTab = props => {
 
   useNavigationButtonPress(e => {
     if (e.buttonId === PROFILE_BUTTON_ID) {
-      Navigation.push(props.componentId, profileStack);
+      Navigation.push(props.componentId, screenComponents.profile);
     }
   }, props.componentId);
 
   const showPhotoDetails = photo => {
-    photoDetailsStack.stack.children[0].component.passProps = {
+    screenComponents.photoDetails.component.passProps = {
       photoId: photo?.id,
     };
-    Navigation.push(props.componentId, photoDetailsStack);
+    Navigation.push(props.componentId, screenComponents.photoDetails);
   };
 
   useEffect(() => {

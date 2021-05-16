@@ -6,10 +6,7 @@ import {
 } from '../../../navigation/helper';
 import {useNavigationButtonPress} from 'react-native-navigation-hooks';
 import {Navigation} from 'react-native-navigation';
-import {
-  postDetailsStack,
-  profileStack,
-} from '../../../navigation/navigationStacks';
+import {screenComponents} from '../../../navigation/screenComponents';
 import {getPosts} from '../../../api/api';
 import PostItem from './components/PostItem';
 import {globalStyles} from '../../../styles/globalStyles';
@@ -20,13 +17,13 @@ const PostsTab = props => {
 
   useNavigationButtonPress(e => {
     if (e.buttonId === PROFILE_BUTTON_ID) {
-      Navigation.push(props.componentId, profileStack);
+      Navigation.push(props.componentId, screenComponents.profile);
     }
   }, props.componentId);
 
   const showPostDetails = post => {
-    postDetailsStack.stack.children[0].component.passProps = {postId: post?.id};
-    Navigation.push(props.componentId, postDetailsStack);
+    screenComponents.postDetails.component.passProps = {postId: post?.id};
+    Navigation.push(props.componentId, screenComponents.postDetails);
   };
 
   useEffect(() => {

@@ -6,10 +6,7 @@ import {
 } from '../../../navigation/helper';
 import {useNavigationButtonPress} from 'react-native-navigation-hooks';
 import {Navigation} from 'react-native-navigation';
-import {
-  userDetailsStack,
-  profileStack,
-} from '../../../navigation/navigationStacks';
+import {screenComponents} from '../../../navigation/screenComponents';
 import {getUsers} from '../../../api/api';
 import {globalStyles} from '../../../styles/globalStyles';
 import UserItem from './components/UserItem';
@@ -18,13 +15,13 @@ const UsersTab = props => {
   const [users, setUsers] = useState([]);
   useNavigationButtonPress(e => {
     if (e.buttonId === PROFILE_BUTTON_ID) {
-      Navigation.push(props.componentId, profileStack);
+      Navigation.push(props.componentId, screenComponents.profile);
     }
   }, props.componentId);
 
   const showUserDetails = user => {
-    userDetailsStack.stack.children[0].component.passProps = {userId: user?.id};
-    Navigation.push(props.componentId, userDetailsStack);
+    screenComponents.userDetails.component.passProps = {userId: user?.id};
+    Navigation.push(props.componentId, screenComponents.userDetails);
   };
 
   useEffect(() => {

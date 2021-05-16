@@ -1,19 +1,29 @@
 export const screenComponents = {
   login: {
-    id: 'LOGIN_SCREEN',
-    name: 'Login',
+    component: {
+      id: 'LOGIN_SCREEN',
+      name: 'Login',
+    },
   },
   profile: {
-    id: 'PROFILE_SCREEN',
-    name: 'Profile',
+    component: {
+      id: 'PROFILE_SCREEN',
+      name: 'Profile',
+    },
   },
   postDetails: {
-    name: 'PostDetails',
+    component: {
+      name: 'PostDetails',
+    },
   },
   photoDetails: {
-    name: 'PhotoDetails',
+    component: {
+      name: 'PhotoDetails',
+    },
   },
   userDetails: {
-    name: 'UserDetails',
+    component: {
+      name: 'UserDetails',
+    },
   },
 };
