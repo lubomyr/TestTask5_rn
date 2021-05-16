@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text} from 'react-native';
+import {View} from 'react-native';
 import {getTopBarOptions} from '../../navigation/helper';
 import UserView from './components/UserView';
 import {getUserById} from '../../api/api';
-import {globalStyles} from "../../styles/globalStyles";
+import {globalStyles} from '../../styles/globalStyles';
 
 const UserDetails = ({userId}) => {
   const [user, setUser] = useState(null);
