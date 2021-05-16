@@ -22,7 +22,7 @@ const UserView = props => {
       }
       if (Object.keys(value)) {
         return (
-          <View style={{marginVertical: 10}}>
+          <View key={index} style={{marginVertical: 10}}>
             <Text>{item}:</Text>
             {renderObject(value)}
           </View>
