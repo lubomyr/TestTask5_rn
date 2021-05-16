@@ -26,7 +26,7 @@ const LoginScreen = props => {
     const users = await getUsers(`?email=${data?.email}`);
     if (users?.length) {
       saveUserToStorage(users?.[0]);
-      Navigation.setStackRoot(props.componentId, homeStack);
+      Navigation.setRoot({root: homeStack});
     } else {
       showModal({title: 'User with this email not found'});
     }
