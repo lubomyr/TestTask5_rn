@@ -3,13 +3,15 @@ import {StyleSheet, View, Text} from 'react-native';
 import {globalStyles} from '../../../styles/globalStyles';
 
 const UserView = props => {
-  const {style, user, onPress} = props;
+  const {style, user} = props;
 
   const renderObject = obj => {
     const keys = Object.keys(obj);
     const view = keys.map((item, index) => {
       const value = obj[item];
-      if (item === 'id') return null;
+      if (item === 'id') {
+        return null;
+      }
       if (value === String(value)) {
         return (
           <View key={index} style={globalStyles.row}>
@@ -31,11 +33,7 @@ const UserView = props => {
     return view;
   };
 
-  return (
-    <View style={style} onPress={onPress}>
-      {user ? renderObject(user) : null}
-    </View>
-  );
+  return <View style={style}>{user ? renderObject(user) : null}</View>;
 };
 export default UserView;
 
