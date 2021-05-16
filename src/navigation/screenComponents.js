@@ -7,4 +7,13 @@ export const screenComponents = {
     id: 'PROFILE_SCREEN',
     name: 'Profile',
   },
+  postDetails: {
+    name: 'PostDetails',
+  },
+  photoDetails: {
+    name: 'PhotoDetails',
+  },
+  userDetails: {
+    name: 'UserDetails',
+  },
 };

@@ -69,3 +69,33 @@ export const homeStack = {
     children: [postsStack, photosStack, usersStack],
   },
 };
+
+export const postDetailsStack = {
+  stack: {
+    children: [
+      {
+        component: screenComponents.postDetails,
+      },
+    ],
+  },
+};
+
+export const photoDetailsStack = {
+  stack: {
+    children: [
+      {
+        component: screenComponents.photoDetails,
+      },
+    ],
+  },
+};
+
+export const userDetailsStack = {
+  stack: {
+    children: [
+      {
+        component: screenComponents.userDetails,
+      },
+    ],
+  },
+};

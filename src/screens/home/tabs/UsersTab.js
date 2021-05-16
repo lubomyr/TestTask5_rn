@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Text} from 'react-native';
+import {getTopBarOptions} from '../../../navigation/helper';
 
 const UsersTab = props => {
   return (
@@ -9,3 +10,4 @@ const UsersTab = props => {
   );
 };
 export default UsersTab;
+UsersTab.options = getTopBarOptions('Users');
