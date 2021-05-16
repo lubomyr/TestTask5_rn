@@ -1,11 +1,24 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text} from 'react-native';
 import {getTopBarOptions} from '../../navigation/helper';
+import UserView from './components/UserView';
+import {getUserById} from '../../api/api';
+import {globalStyles} from "../../styles/globalStyles";
 
-const UserDetails = props => {
+const UserDetails = ({userId}) => {
+  const [user, setUser] = useState(null);
+
+  const retrieveUser = async () => {
+    setUser(await getUserById(userId));
+  };
+
+  useEffect(() => {
+    retrieveUser();
+  }, []);
+
   return (
-    <View>
-      <Text>User Details</Text>
+    <View style={globalStyles.root}>
+      <UserView user={user} />
     </View>
   );
 };

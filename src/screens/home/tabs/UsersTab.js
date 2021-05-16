@@ -20,6 +20,7 @@ const UsersTab = props => {
   }, props.componentId);
 
   const showUserDetails = user => {
+    userDetailsStack.stack.children[0].component.passProps = {userId: user?.id};
     Navigation.push(props.componentId, userDetailsStack);
   };
 

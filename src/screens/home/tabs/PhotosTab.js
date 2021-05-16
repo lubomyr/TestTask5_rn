@@ -26,6 +26,9 @@ const PhotosTab = props => {
   }, props.componentId);
 
   const showPhotoDetails = photo => {
+    photoDetailsStack.stack.children[0].component.passProps = {
+      photoId: photo?.id,
+    };
     Navigation.push(props.componentId, photoDetailsStack);
   };
 

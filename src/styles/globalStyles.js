@@ -14,6 +14,9 @@ export const globalStyles = StyleSheet.create({
   title: {
     fontWeight: 'bold',
   },
+  row: {
+    flexDirection: 'row',
+  },
 });
 
 export const theme = {

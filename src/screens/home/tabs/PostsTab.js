@@ -21,6 +21,7 @@ const PostsTab = props => {
   }, props.componentId);
 
   const showPostDetails = post => {
+    postDetailsStack.stack.children[0].component.passProps = {postId: post?.id};
     Navigation.push(props.componentId, postDetailsStack);
   };
 

@@ -23,6 +23,11 @@ export const getPhotos = async (albumId = 1) => {
   return await fetch(url).then(response => response.json());
 };
 
+export const getPostById = async id => {
+  const url = `${API_HOST}/posts/${id}`;
+  return await fetch(url).then(response => response.json());
+};
+
 export const getUserById = async id => {
   const url = `${API_HOST}/users/${id}`;
   return await fetch(url).then(response => response.json());
