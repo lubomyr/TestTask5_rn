@@ -38,6 +38,7 @@ const PhotosTab = props => {
 
   const photoList = photos.map(item => (
     <PhotoItem
+      key={item?.id}
       imageStyle={{width: imageWidth, height: imageHeight}}
       photo={item}
       onPress={() => showPhotoDetails(item)}
@@ -54,7 +55,7 @@ const PhotosTab = props => {
             setLayout(updLayout);
           }
         }}>
-        {photoList}
+        {imageWidth && imageHeight ? photoList : null}
       </View>
     </ScrollView>
   );
