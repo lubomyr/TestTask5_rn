@@ -16,9 +16,11 @@ const LoginScreen = props => {
   const checkEmail = async () => {
     if (!data?.email) {
       showModal({title: 'Enter valid email'});
+      return true;
     }
     if (!data?.password) {
       showModal({title: 'Enter any password'});
+      return true;
     }
     const users = await getUsers(`?email=${data?.email}`);
     if (users?.length) {
