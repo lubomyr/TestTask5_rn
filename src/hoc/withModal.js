@@ -11,8 +11,8 @@ import {theme} from '../styles/globalStyles';
 
 const {backgroundColor} = theme;
 
-export function withModal(WrappedComponent) {
-  return props => {
+export function withModal(WrappedComponent, options) {
+  const hoc = props => {
     const [modalData, setModalData] = useState(null);
     const [isVisible, setIsVisible] = useState(false);
 
@@ -93,6 +93,8 @@ export function withModal(WrappedComponent) {
       </View>
     );
   };
+  hoc.options = options;
+  return hoc;
 }
 
 const styles = StyleSheet.create({
@@ -120,7 +122,6 @@ const styles = StyleSheet.create({
   title: {
     fontWeight: 'bold',
     fontSize: 22,
-    textTransform: 'uppercase',
     marginBottom: 20,
   },
   content: {
