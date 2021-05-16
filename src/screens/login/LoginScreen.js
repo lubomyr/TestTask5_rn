@@ -3,8 +3,10 @@ import {View} from 'react-native';
 import {globalStyles, theme} from '../../styles/globalStyles';
 import {FieldWrapper, TextInput, Button} from '../../components';
 import {getTopBarOptions} from '../../navigation/helper';
+import {withModal} from '../../hoc/withModal';
 
 const LoginScreen = props => {
+  const {showModal} = props;
   const [data, setData] = useState({email: '', password: ''});
   return (
     <View style={globalStyles.root}>
@@ -30,6 +32,6 @@ const LoginScreen = props => {
     </View>
   );
 };
-export default LoginScreen;
+export default withModal(LoginScreen);
 
 LoginScreen.options = getTopBarOptions('Login');

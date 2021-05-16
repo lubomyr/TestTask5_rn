@@ -14,4 +14,5 @@ export const theme = {
   primaryColor: '#710ce3',
   borderColor: 'gray',
   buttonTextColor: 'white',
+  backgroundColor: 'white',
 };
