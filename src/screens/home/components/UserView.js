@@ -4,31 +4,36 @@ import {globalStyles} from '../../../styles/globalStyles';
 
 const UserView = props => {
   const {style, user, onPress} = props;
-  const {name, username, email, address, phone, website, company} = user || {};
+
+  const renderObject = obj => {
+    const keys = Object.keys(obj);
+    const view = keys.map((item, index) => {
+      const value = obj[item];
+      if (item === 'id') return null;
+      if (value === String(value)) {
+        return (
+          <View key={index} style={globalStyles.row}>
+            <Text style={styles.label}>{item}:</Text>
+            <Text style={styles.value}>{value}</Text>
+          </View>
+        );
+      }
+      if (Object.keys(value)) {
+        return (
+          <View style={{marginVertical: 10}}>
+            <Text>{item}:</Text>
+            {renderObject(value)}
+          </View>
+        );
+      }
+      return null;
+    });
+    return view;
+  };
+
   return (
     <View style={style} onPress={onPress}>
-      <View style={styles.container}>
-        <View style={globalStyles.row}>
-          <Text style={styles.label}>Name:</Text>
-          <Text style={styles.value}>{name}</Text>
-        </View>
-        <View style={globalStyles.row}>
-          <Text style={styles.label}>Username:</Text>
-          <Text style={styles.value}>{username}</Text>
-        </View>
-        <View style={globalStyles.row}>
-          <Text style={styles.label}>Email:</Text>
-          <Text style={styles.value}>{email}</Text>
-        </View>
-        <View style={globalStyles.row}>
-          <Text style={styles.label}>Phone:</Text>
-          <Text style={styles.value}>{phone}</Text>
-        </View>
-        <View style={globalStyles.row}>
-          <Text style={styles.label}>Website:</Text>
-          <Text style={styles.value}>{website}</Text>
-        </View>
-      </View>
+      {user ? renderObject(user) : null}
     </View>
   );
 };
