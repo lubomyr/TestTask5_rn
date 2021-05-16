@@ -1,18 +1,35 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const tokenKey = 'token_key';
+const userKey = 'user_key';
 
-export const isAuthorizad = () =>
+export const getUserFromStorage = () =>
   new Promise((resolve, reject) => {
-    AsyncStorage.getItem(tokenKey)
+    AsyncStorage.getItem(userKey)
       .then(value => {
-        if (value === 'true') {
-          resolve(true);
+        if (value) {
+          resolve(JSON.parse(value));
         } else {
-          resolve(false);
+          resolve(null);
         }
       })
       .catch(error => {
-        resolve(false);
+        resolve(null);
       });
   });
+
+export const saveUserToStorage = async value => {
+  const user = JSON.stringify(value);
+  try {
+    await AsyncStorage.setItem(userKey, user);
+  } catch (e) {
+    // saving error
+  }
+};
+
+export const deleteUserFromStore = async () => {
+  try {
+    await AsyncStorage.removeItem(userKey);
+  } catch (e) {
+    // saving error
+  }
+};
