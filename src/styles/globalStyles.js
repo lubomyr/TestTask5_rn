@@ -8,6 +8,12 @@ export const globalStyles = StyleSheet.create({
     backgroundColor: 'whitesmoke',
     padding: 20,
   },
+  items: {
+    paddingVertical: 10,
+  },
+  title: {
+    fontWeight: 'bold',
+  },
 });
 
 export const theme = {

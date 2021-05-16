@@ -13,6 +13,7 @@ export const loginStack = {
 
 export const profileStack = {
   stack: {
+    id: 'PROFILE_STACK_ID',
     children: [
       {
         component: screenComponents.profile,

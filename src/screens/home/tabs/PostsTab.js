@@ -1,13 +1,51 @@
-import React from 'react';
-import {View, Text} from 'react-native';
-import {getTopBarOptions} from '../../../navigation/helper';
+import React, {useEffect, useState} from 'react';
+import {View, FlatList} from 'react-native';
+import {getTopBarWithProfileOptions} from '../../../navigation/helper';
+import {useNavigationButtonPressed} from '../../../hooks/navigationHooks';
+import {Navigation} from 'react-native-navigation';
+import {
+  postDetailsStack,
+  profileStack,
+} from '../../../navigation/navigationStacks';
+import {getPosts} from '../../../api/api';
+import PostItem from './components/PostItem';
+import {globalStyles} from '../../../styles/globalStyles';
 
 const PostsTab = props => {
+  const [posts, setPosts] = useState([]);
+
+  useNavigationButtonPressed(e => {
+    if (e.buttonId === 'PROFILE_BUTTON_ID') {
+      Navigation.push(props.componentId, profileStack);
+    }
+  }, props.componentId);
+
+  const showPostDetails = post => {
+    Navigation.push(props.componentId, postDetailsStack);
+  };
+
+  useEffect(() => {
+    const retrievePosts = async () => {
+      setPosts(await getPosts());
+    };
+    retrievePosts();
+  }, []);
+
   return (
-    <View>
-      <Text>Posts</Text>
+    <View style={globalStyles.root}>
+      <FlatList
+        data={posts}
+        renderItem={({item}) => (
+          <PostItem
+            style={globalStyles.items}
+            post={item}
+            onPress={() => showPostDetails(item)}
+          />
+        )}
+        keyExtractor={item => item.id}
+      />
     </View>
   );
 };
 export default PostsTab;
-PostsTab.options = getTopBarOptions('Posts');
+PostsTab.options = getTopBarWithProfileOptions('Posts');
